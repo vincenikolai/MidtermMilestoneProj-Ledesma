@@ -80,11 +80,13 @@ require __DIR__ . '/header.php';
                 </a>
 
                 <button
-                    class="btn btn-muted favorite-toggle"
+                    class="btn btn-muted favorite-toggle<?= (int) $recipe['is_favorited'] === 1 ? ' is-saved' : '' ?>"
                     data-recipe-id="<?= e($recipe['id']) ?>"
+                    aria-label="<?= (int) $recipe['is_favorited'] === 1 ? 'Remove from favorites' : 'Add to favorites' ?>"
+                    aria-pressed="<?= (int) $recipe['is_favorited'] === 1 ? 'true' : 'false' ?>"
                     type="button"
                 >
-                    <?= (int) $recipe['is_favorited'] === 1 ? 'Saved' : 'Save' ?>
+                    <?= (int) $recipe['is_favorited'] === 1 ? '★ Saved' : '☆ Save' ?>
                 </button>
 
                 <?php if ((int) $recipe['user_id'] === currentUserId()): ?>

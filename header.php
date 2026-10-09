@@ -8,8 +8,9 @@ $pageTitle = $pageTitle ?? 'Timplada';
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= e($pageTitle) ?> | Timplada</title>
+    <meta name="csrf-token" content="<?= e(csrfToken()) ?>">
     <link rel="stylesheet" href="style.css">
-    <script src="app.js" defer></script>
+    <script src="app.js?v=2" defer></script>
 </head>
 <body>
 <header class="site-header">
@@ -20,6 +21,7 @@ $pageTitle = $pageTitle ?? 'Timplada';
                 <a href="index.php">Recipes</a>
                 <a href="create-recipe.php">Share a Recipe</a>
                 <a href="profile.php">My Dashboard</a>
+                <a href="favorites.php">Favorites <span class="nav-star" aria-hidden="true">★</span></a>
                 <a class="nav-logout" href="logout.php">Log out</a>
             </nav>
         <?php endif; ?>

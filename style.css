@@ -125,6 +125,10 @@ nav a:hover {
     color: #f1d48f;
 }
 
+.nav-star {
+    color: var(--gold);
+}
+
 .nav-logout {
     border: 1px solid #ffffff55;
 }
@@ -175,6 +179,19 @@ nav a:hover {
 .favorite-toggle.is-saved {
     background: var(--gold);
     color: #3c2b15;
+}
+
+.hero-star,
+.empty-star {
+    color: var(--gold);
+}
+
+.empty-state {
+    text-align: center;
+}
+
+.empty-star {
+    font-size: 3rem;
 }
 
 .toolbar input,

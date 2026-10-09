@@ -8,7 +8,12 @@
 
     function getCsrfToken() {
         var tokenInput = document.querySelector('input[name="csrf_token"]');
-        return tokenInput ? tokenInput.value : '';
+        if (tokenInput) {
+            return tokenInput.value;
+        }
+
+        var tokenMeta = document.querySelector('meta[name="csrf-token"]');
+        return tokenMeta ? tokenMeta.content : '';
     }
 
     function setupRegistrationValidation() {
@@ -122,8 +127,17 @@
             })
             .then(function (data) {
                 var isSaved = data.status === 'added';
-                button.textContent = isSaved ? 'Saved' : 'Save';
+                button.textContent = isSaved ? '★ Saved' : '☆ Save';
+                button.setAttribute('aria-label', isSaved ? 'Remove from favorites' : 'Add to favorites');
+                button.setAttribute('aria-pressed', isSaved ? 'true' : 'false');
                 button.classList.toggle('is-saved', isSaved);
+
+                if (!isSaved && button.dataset.removeOnUnsave === 'true') {
+                    var card = button.closest('.card');
+                    if (card) {
+                        card.remove();
+                    }
+                }
             })
             .catch(function () {
                 alert('Unable to update your saved recipes. Please try again.');
